@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>Car Sale | Home</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+</head>
+
+<style>
+
+.row
+{
+display: flex;
+align-items: center; 
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+
+</style>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">Car Sale</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home">NEW</a></li>
+        <li><a href="#band">USED</a></li>
+        <li><a href="#tour">SELL</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<br></br><br></br><br></br>
+
+
+
+<!-- Modal -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: #2471A3; color:white;">
+               
+                <h2 class="modal-title" id="myModalLabel" th:text="${carBean.make}">
+                    
+                </h2>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label  class="col-md-5 control-label"
+                              for="model">Model</label>
+                    <div class="col-sm-7">
+                       <label  class="col-sm-12 control-label"
+                              for="model" th:text="${carBean.model}"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-sm-5 control-label"
+                              for="price">Price</label>
+                    <div class="col-sm-7">
+                       <label  class="col-sm-12 control-label"
+                              for="price" th:text="${'$' + carBean.price}"></label>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label  class="col-sm-5 control-label"
+                              for="color">Colour</label>
+                    <div class="col-sm-7">
+                       <label  class="col-sm-12 control-label"
+                              for="color" th:text="${carBean.color}"></label>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-5 control-label"
+                              for="year">Model Year</label>
+                    <div class="col-sm-7">
+                       <label  class="col-sm-12 control-label"
+                              for="year" th:text="${carBean.year}"></label>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-5 control-label"
+                              for="trans">Transmission</label>
+                    <div class="col-sm-7">
+                       <label  class="col-sm-12 control-label"
+                              for="trans" th:text="${carBean.transmission}"></label>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-5 control-label"
+                              for="body">Body</label>
+                    <div class="col-sm-7">
+                       <label  class="col-sm-12 control-label"
+                              for="body" th:text="${carBean.body}"></label>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-5 control-label"
+                              for="body">Interior Colour</label>
+                    <div class="col-sm-7">
+                       <label  class="col-sm-12 control-label"
+                              for="body" th:text="${carBean.interiorColor}"></label>
+                    </div>
+                  </div>
+                  
+              
+                </form>
+                
+                
+                
+                
+                
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#enqModal">
+                    Enquiry
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="enqModal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Car Enquiry
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form class="form-horizontal" role="form" action="#" method="POST" th:action="@{/saveEnquiryInfo}" th:object="${customerEnquiryBean}">
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="name">Name</label>
+                    <div class="col-sm-10">
+                    	
+                    	<input type="hidden" class="form-control" 
+                        th:field="${carBean.carId}" th:name="*{carId}" id="carId"/>
+                        
+                        <input type="text" class="form-control" 
+                        id="name" placeholder="First Name" th:field="*{name}"/><br></br>
+                        <label id="cname" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+                  
+                    </div>
+                  </div>
+                
+                	 <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="emailId">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" 
+                        id="emailId" placeholder="Email" th:field="*{email}"/><br></br>
+                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="phone">Phone No</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" 
+                        id="phone" placeholder="Phone No" th:field="*{phone}"/><br></br>
+                        <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></label>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="message">Message</label>
+                    <div class="col-sm-10">
+                        <textarea rows="5" cols="8" class="form-control" id="message" placeholder="Message" th:field="*{message}"></textarea> 
+                        <label th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></label>
+                    </div>
+                  </div>
+                 
+               
+                
+                  <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Cancel
+                </button>
+                <button type="submit" class="btn btn-primary" >
+                    Send
+                </button>
+            </div>
+                
+                </form>
+                
+                
+            </div>
+            
+          
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+
+
+<script th:inline="javascript">
+jQuery(document).ready(function() {    
+	
+	  /*<![CDATA[*/
+	  
+	  var check =/*[[ ${#fields.hasErrors('customerEnquiryBean.*')}]]*/ false;   // .* to access all the fields of bean
+	  
+	  if(check)
+		  {
+		  	
+		  	$("#enqModal").modal('show');
+		  }
+	  /*]]>*/
+	 
+	
+});
+
+
+
+
+</script>
+</html>

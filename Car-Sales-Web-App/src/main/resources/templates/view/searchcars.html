@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>Car Sale | Home</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+
+<style>
+.car {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+}
+.car:hover {
+    border-color: #f1f1f1;
+}
+
+.jumbotron { 
+    background-color: #2471A3;  /*blue*/
+    color: #ffffff;
+}
+
+.box{
+    width: 250px;
+    height: 250px;
+    border: solid 1px black;
+}
+
+.row
+{
+display: flex;
+align-items: center; 
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+</style>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">Car Sale</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home">NEW</a></li>
+        <li><a href="#band">USED</a></li>
+        <li><a href="#tour">SELL</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<br></br><br></br><br></br>
+
+<div class="container text-center">
+	<h1 th:text="${MSG}"></h1>
+</div>
+
+<div class="container">
+	<div class="row" id="scar">
+		 <div th:each="car : ${carlist}"  class="col-md-3 text-center" style="border:1px solid black; margin-left: 25px; margin-bottom: 30px;">
+									  	<h1 th:text="${car.make}"></h1>
+										<h3 th:text="${car.model}"></h3>
+										<h4 th:text="${'$' + car.price}"></h4>
+										<br></br>
+										<form method="POST" action="#" th:action="@{/cardetailspage}" class="form-inline">
+											<input type="hidden" th:value="${car.carId}" th:name="carId"></input>
+											
+											  
+											 <button type="submit"  class="btn btn-primary" 
+										 style="margin-bottom: 20px;">View Details</button>
+										</form>
+										
+								
+										</div>
+	</div>
+	
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="enqModal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Car Enquiry
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="name">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" 
+                        id="nname" placeholder="First Name"/>
+                    </div>
+                  </div>
+                
+                	 <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="email">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" 
+                        id="email" placeholder="Email"/>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="phone">Phone No</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" 
+                        id="phone" placeholder="Phone No"/>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="comments">Comments</label>
+                    <div class="col-sm-10">
+                        <textarea rows="5" cols="8" class="form-control" id="comments" placeholder="Comments"></textarea> 
+                    </div>
+                  </div>
+                 
+                </form>
+                
+                
+                
+                
+                
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Cancel
+                </button>
+                <button type="button" class="btn btn-primary">
+                    Send
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+
+<script th:inline="javascript">
+jQuery(document).ready(function() {    
+	
+	
+	
+});
+
+
+
+
+
+
+</script>
+</html>
