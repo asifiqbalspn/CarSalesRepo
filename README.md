@@ -1,2 +1,2 @@
 # CarSalesRepo
-Spring boot Application Rest and Web client For Car Rental
+Spring boot Application Rest and Web client For Car Sales
